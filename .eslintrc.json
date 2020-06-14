@@ -21,6 +21,7 @@
         ],
         "one-var": [
             "off"
-        ]
+        ],
+        "import/no-dynamic-require": "off"
     }
 }

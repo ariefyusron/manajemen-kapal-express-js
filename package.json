@@ -5,8 +5,9 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "migrate": "cd db && sequelize db:migrate",
-    "migrate-undo": "cd db && sequelize db:migrate:undo",
-    "migrate-undo-all": "cd db && sequelize db:migrate:undo:all",
+    "migrate:undo": "cd db && sequelize db:migrate:undo",
+    "migrate:undo-all": "cd db && sequelize db:migrate:undo:all",
+    "migrate:create": "cd db && sequelize-cli model:generate --name",
     "lint": "eslint --ignore-path .gitignore ."
   },
   "dependencies": {
@@ -18,7 +19,8 @@
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.4",
-    "sequelize": "^5.21.13"
+    "sequelize": "^5.21.13",
+    "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
