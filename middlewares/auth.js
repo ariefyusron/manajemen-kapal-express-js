@@ -20,6 +20,6 @@ exports.checkAuth = (req, res, next) => {
     next();
   }
   catch (e) {
-    res.status(401).json('Unauthorized');
+    res.status(401).json({ message: 'Unauthorized' });
   }
 };
