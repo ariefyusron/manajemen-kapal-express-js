@@ -23,3 +23,12 @@ exports.checkAuth = (req, res, next) => {
     res.status(401).json({ message: 'Unauthorized' });
   }
 };
+
+exports.checkAdmin = (req, res, next) => {
+  if (req.userData.is_admin) {
+    next();
+  }
+  else {
+    res.status(401).json({ message: 'Error permission' });
+  }
+};

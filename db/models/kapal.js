@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Kapal.associate = (models) => {
     // associations can be defined here
-    Kapal.hasOne(models.KapalType, {
-      foreignKey: 'kapal_id'
+    Kapal.belongsTo(models.KapalType, {
+      foreignKey: 'kapal_type'
     });
 
-    Kapal.hasOne(models.SurveyType, {
-      foreignKey: 'kapal_id'
+    Kapal.belongsTo(models.SurveyType, {
+      foreignKey: 'survey_type'
     });
   };
   return Kapal;

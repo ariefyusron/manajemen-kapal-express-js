@@ -6,14 +6,6 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
-    kapal_id: {
-      type: Sequelize.INTEGER,
-      unique: true,
-      references: {
-        model: 'Kapals',
-        key: 'id'
-      }
-    },
     name: {
       type: Sequelize.STRING
     },

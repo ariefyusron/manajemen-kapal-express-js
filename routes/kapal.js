@@ -5,7 +5,6 @@ const router = express.Router();
 const controller = require('../controllers/kapal');
 const middleware = require('../middlewares/auth');
 
-/* GET all kapal. */
 router.post('/', middleware.checkAuth, controller.createKapal);
 router.patch('/:id', middleware.checkAuth, controller.updateKapal);
 router.delete('/:id', middleware.checkAuth, controller.deleteKapal);

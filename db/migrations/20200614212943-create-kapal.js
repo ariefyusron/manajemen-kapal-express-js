@@ -10,7 +10,12 @@ module.exports = {
       type: Sequelize.STRING
     },
     kapal_type: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER,
+      unique: true,
+      references: {
+        model: 'KapalTypes',
+        key: 'id'
+      }
     },
     length_oa: {
       type: Sequelize.INTEGER
@@ -34,7 +39,12 @@ module.exports = {
       type: Sequelize.STRING
     },
     survey_type: {
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER,
+      unique: true,
+      references: {
+        model: 'SurveyTypes',
+        key: 'id'
+      }
     },
     createdAt: {
       allowNull: false,
