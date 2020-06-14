@@ -1,11 +1,19 @@
+require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
 
 const indexRouter = require('./routes/index');
 const kapalRouter = require('./routes/kapal');
+const userRouter = require('./routes/user');
 
 const app = express();
 
@@ -18,11 +26,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+  req.jwt = jwt;
+  req.secretKey = process.env.JWT_SECRET_KEY;
+  req.bcrypt = bcrypt;
+  req.saltRounds = saltRounds;
+  next();
+});
 
 app.use('/', indexRouter);
 
 // api v1
 app.use('/api/v1/kapal', kapalRouter);
+app.use('/api/v1/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
