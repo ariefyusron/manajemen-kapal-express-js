@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index');
 const kapalRouter = require('./routes/kapal');
 const userRouter = require('./routes/user');
 const kapalTypeRouter = require('./routes/kapalType');
+const surveyTypeRouter = require('./routes/surveyType');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/', indexRouter);
 app.use('/api/v1/kapal', kapalRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/kapal-type', kapalTypeRouter);
+app.use('/api/v1/survey-type', surveyTypeRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
