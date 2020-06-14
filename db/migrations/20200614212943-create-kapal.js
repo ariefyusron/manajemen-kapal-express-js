@@ -11,7 +11,6 @@ module.exports = {
     },
     kapal_type: {
       type: Sequelize.INTEGER,
-      unique: true,
       references: {
         model: 'KapalTypes',
         key: 'id'
@@ -40,7 +39,6 @@ module.exports = {
     },
     survey_type: {
       type: Sequelize.INTEGER,
-      unique: true,
       references: {
         model: 'SurveyTypes',
         key: 'id'

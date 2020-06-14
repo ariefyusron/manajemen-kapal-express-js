@@ -1,5 +1,8 @@
-exports.createKapal = (req, res) => {
-  res.json({ title: 'ini create kapal' });
+const models = require('../db/models');
+
+exports.createKapal = async (req, res) => {
+  const result = await models.Kapal.create(req.body);
+  res.json(result);
 };
 
 exports.updateKapal = (req, res) => {
@@ -10,10 +13,17 @@ exports.deleteKapal = (req, res) => {
   res.json({ title: 'ini delete kapal' });
 };
 
-exports.getKapal = (req, res) => {
-  res.json({ title: 'ini get kapal' });
+exports.getKapal = async (req, res) => {
+  const result = await models.Kapal.findAll();
+  res.json(result);
 };
 
-exports.getByIdKapal = (req, res) => {
-  res.json({ title: 'ini detail kapal' });
+exports.getByIdKapal = async (req, res) => {
+  const result = await models.Kapal.findOne({ where: { id: req.params.id } });
+  if (result) {
+    res.json(result);
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
 };
