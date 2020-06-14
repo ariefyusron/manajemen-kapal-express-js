@@ -18,8 +18,9 @@ exports.deleteType = (req, res) => {
   res.json({ title: 'ini delete Type' });
 };
 
-exports.getType = (req, res) => {
-  res.json({ title: 'ini get Type' });
+exports.getType = async (req, res) => {
+  const result = await models.KapalType.findAll();
+  res.json(result);
 };
 
 exports.getByIdType = (req, res) => {
