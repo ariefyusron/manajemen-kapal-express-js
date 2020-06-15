@@ -8,6 +8,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const cors = require('cors');
 
 const saltRounds = 10;
 
@@ -18,6 +19,8 @@ const kapalTypeRouter = require('./routes/kapalType');
 const surveyTypeRouter = require('./routes/surveyType');
 
 const app = express();
+
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
