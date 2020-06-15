@@ -5,14 +5,20 @@ exports.createKapal = async (req, res) => {
   res.json(result);
 };
 
-exports.updateKapal = (req, res) => {
-  res.json({ title: 'ini update kapal' });
+exports.updateKapal = async (req, res) => {
+  const result = await models.Kapal.update(req.body, { where: { id: req.params.id, is_delete: 0 } });
+  if (result[0]) {
+    res.json({ message: 'Updated' });
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
 };
 
 exports.deleteKapal = async (req, res) => {
-  const result = await models.Kapal.update({ is_delete: 1 }, { where: { id: req.params.id } });
+  const result = await models.Kapal.update({ is_delete: 1 }, { where: { id: req.params.id, is_delete: 0 } });
   if (result[0]) {
-    res.json({ message: 'Success' });
+    res.json({ message: 'Deleted' });
   }
   else {
     res.status(404).json({ message: 'Not found' });
@@ -25,7 +31,7 @@ exports.getKapal = async (req, res) => {
 };
 
 exports.getByIdKapal = async (req, res) => {
-  const result = await models.Kapal.findOne({ where: { id: req.params.id } });
+  const result = await models.Kapal.findOne({ where: { id: req.params.id, is_delete: 0 } });
   if (result) {
     res.json(result);
   }
