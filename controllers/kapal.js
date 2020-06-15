@@ -26,7 +26,7 @@ exports.deleteKapal = async (req, res) => {
 };
 
 exports.getKapal = async (req, res) => {
-  const result = await models.Kapal.findAll({ where: { is_delete: 0 } });
+  const result = await models.Kapal.findAll({ where: { is_delete: 0 }, order: [['createdAt', 'DESC']] });
   res.json(result);
 };
 
