@@ -9,12 +9,18 @@ exports.updateKapal = (req, res) => {
   res.json({ title: 'ini update kapal' });
 };
 
-exports.deleteKapal = (req, res) => {
-  res.json({ title: 'ini delete kapal' });
+exports.deleteKapal = async (req, res) => {
+  const result = await models.Kapal.update({ is_delete: 1 }, { where: { id: req.params.id } });
+  if (result[0]) {
+    res.json({ message: 'Success' });
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
 };
 
 exports.getKapal = async (req, res) => {
-  const result = await models.Kapal.findAll();
+  const result = await models.Kapal.findAll({ where: { is_delete: 0 } });
   res.json(result);
 };
 

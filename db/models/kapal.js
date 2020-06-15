@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     draft: DataTypes.INTEGER,
     gross_tonnage: DataTypes.INTEGER,
     class: DataTypes.STRING,
-    survey_type: DataTypes.STRING
+    survey_type: DataTypes.STRING,
+    is_delete: DataTypes.BOOLEAN
   }, {});
   Kapal.associate = (models) => {
     // associations can be defined here

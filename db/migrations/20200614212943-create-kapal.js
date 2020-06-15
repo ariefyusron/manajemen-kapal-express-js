@@ -51,6 +51,10 @@ module.exports = {
     updatedAt: {
       allowNull: false,
       type: Sequelize.DATE
+    },
+    is_delete: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
     }
   }),
   down: (queryInterface) => queryInterface.dropTable('Kapals')
