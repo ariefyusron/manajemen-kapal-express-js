@@ -14,8 +14,23 @@ exports.updateType = (req, res) => {
   res.json({ title: 'ini update Type' });
 };
 
-exports.deleteType = (req, res) => {
-  res.json({ title: 'ini delete Type' });
+exports.deleteType = async (req, res) => {
+  await models.Kapal.destroy({
+    where: {
+      survey_type: req.params.id
+    }
+  });
+  const result = await models.SurveyType.destroy({
+    where: {
+      id: req.params.id
+    }
+  });
+  if (result) {
+    res.json({ message: 'Deleted' });
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
 };
 
 exports.getType = async (req, res) => {
