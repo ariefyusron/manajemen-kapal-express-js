@@ -19,7 +19,7 @@ exports.deleteType = (req, res) => {
 };
 
 exports.getType = async (req, res) => {
-  const result = await models.KapalType.findAll();
+  const result = await models.KapalType.findAll({ order: [['createdAt', 'DESC']] });
   res.json(result);
 };
 
