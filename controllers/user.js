@@ -33,3 +33,25 @@ exports.login = async (req, res) => {
     }
   }
 };
+
+exports.getUser = async (req, res) => {
+  const listUser = await models.User.findAll({
+    attributes: ['id', 'username', 'is_admin'],
+    order: [['createdAt', 'DESC']]
+  });
+  res.json(listUser);
+};
+
+exports.deleteUser = async (req, res) => {
+  const result = await models.User.destroy({
+    where: {
+      id: req.params.id
+    }
+  });
+  if (result) {
+    res.json({ message: 'Deleted' });
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
+};
