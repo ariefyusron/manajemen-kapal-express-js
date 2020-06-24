@@ -8,7 +8,7 @@ exports.createKapal = async (req, res) => {
 exports.updateKapal = async (req, res) => {
   const result = await models.Kapal.update(req.body, { where: { id: req.params.id, is_delete: 0 } });
   if (result[0]) {
-    res.json({ message: 'Updated' });
+    res.json({ id: req.params.id, ...req.body });
   }
   else {
     res.status(404).json({ message: 'Not found' });
