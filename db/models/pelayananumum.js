@@ -1,6 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const PelayananUmum = sequelize.define('PelayananUmum', {
     id_kapal: DataTypes.INTEGER,
+    nama_pekerjaan: DataTypes.STRING,
     volume: DataTypes.INTEGER,
     satuan: DataTypes.STRING,
     dps: DataTypes.INTEGER,

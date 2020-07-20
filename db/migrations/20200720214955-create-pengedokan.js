@@ -13,6 +13,9 @@ module.exports = {
         key: 'id'
       }
     },
+    nama_pekerjaan: {
+      type: Sequelize.STRING
+    },
     volume: {
       type: Sequelize.INTEGER
     },
