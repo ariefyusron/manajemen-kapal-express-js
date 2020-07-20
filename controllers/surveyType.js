@@ -15,6 +15,15 @@ exports.updateType = (req, res) => {
 };
 
 exports.deleteType = async (req, res) => {
+  const getKapal = await models.Kapal.findAll({ where: { is_delete: 0 }, order: [['createdAt', 'DESC']] });
+  getKapal.map(async (e) => {
+    await models.Pengedokan.destroy({
+      where: {
+        id_kapal: e.id
+      }
+    });
+  });
+
   await models.Kapal.destroy({
     where: {
       survey_type: req.params.id
