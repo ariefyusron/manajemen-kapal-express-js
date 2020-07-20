@@ -18,6 +18,7 @@ const userRouter = require('./routes/user');
 const kapalTypeRouter = require('./routes/kapalType');
 const surveyTypeRouter = require('./routes/surveyType');
 const pengedokanRouter = require('./routes/pengedokan');
+const pelayananUmumRouter = require('./routes/pelayananUmum');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/kapal-type', kapalTypeRouter);
 app.use('/api/v1/survey-type', surveyTypeRouter);
 app.use('/api/v1/pengedokan', pengedokanRouter);
+app.use('/api/v1/pelayanan-umum', pelayananUmumRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
