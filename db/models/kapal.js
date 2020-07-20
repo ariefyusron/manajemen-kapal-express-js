@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Kapal = sequelize.define('Kapal', {
     name: DataTypes.STRING,
-    kapal_type: DataTypes.STRING,
+    kapal_type: DataTypes.INTEGER,
     length_oa: DataTypes.INTEGER,
     length_pp: DataTypes.INTEGER,
     breadth: DataTypes.INTEGER,
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     draft: DataTypes.INTEGER,
     gross_tonnage: DataTypes.INTEGER,
     class: DataTypes.STRING,
-    survey_type: DataTypes.STRING,
+    survey_type: DataTypes.INTEGER,
     is_delete: DataTypes.BOOLEAN
   }, {});
   Kapal.associate = (models) => {
