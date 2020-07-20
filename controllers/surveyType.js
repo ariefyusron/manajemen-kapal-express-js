@@ -28,6 +28,12 @@ exports.deleteType = async (req, res) => {
         id_kapal: e.id
       }
     });
+
+    await models.KontruksiBadanKapal.destroy({
+      where: {
+        id_kapal: e.id
+      }
+    });
   });
 
   await models.Kapal.destroy({
