@@ -26,12 +26,12 @@ exports.deleteKapal = async (req, res) => {
 };
 
 exports.getKapal = async (req, res) => {
-  const result = await models.Kapal.findAll({ where: { is_delete: 0 }, order: [['createdAt', 'DESC']] });
+  const result = await models.Kapal.findAll({ include: [{ model: models.KapalType }, { model: models.SurveyType }], where: { is_delete: 0 }, order: [['createdAt', 'DESC']] });
   res.json(result);
 };
 
 exports.getByIdKapal = async (req, res) => {
-  const result = await models.Kapal.findOne({ where: { id: req.params.id, is_delete: 0 } });
+  const result = await models.Kapal.findOne({ include: [{ model: models.KapalType }, { model: models.SurveyType }], where: { id: req.params.id, is_delete: 0 } });
   if (result) {
     res.json(result);
   }
