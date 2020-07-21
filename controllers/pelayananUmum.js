@@ -3,7 +3,7 @@ const models = require('../db/models');
 exports.createPelayananUmum = async (req, res) => {
   const total = req.body.dps + req.body.sub_kont + req.body.jasa_peralatan + req.body.material + req.body.material_bantu;
 
-  const result = await models.PelayananUmum.create({ ...req.body, total });
+  const result = await models.PelayananUmum.create({ ...req.body, id_kapal: req.params.idKapal, total });
   res.json(result);
 };
 
@@ -33,7 +33,7 @@ exports.deletePelayananUmum = async (req, res) => {
 };
 
 exports.getPelayananUmum = async (req, res) => {
-  const result = await models.PelayananUmum.findAll({ order: [['createdAt', 'DESC']] });
+  const result = await models.PelayananUmum.findAll({ where: { id_kapal: req.params.idKapal }, order: [['createdAt', 'DESC']] });
   res.json(result);
 };
 

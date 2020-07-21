@@ -3,7 +3,7 @@ const models = require('../db/models');
 exports.createPengedokan = async (req, res) => {
   const total = req.body.dps + req.body.sub_kont + req.body.jasa_peralatan + req.body.material + req.body.material_bantu;
 
-  const result = await models.Pengedokan.create({ ...req.body, total });
+  const result = await models.Pengedokan.create({ ...req.body, id_kapal: req.params.idKapal, total });
   res.json(result);
 };
 
@@ -33,7 +33,7 @@ exports.deletePengedokan = async (req, res) => {
 };
 
 exports.getPengedokan = async (req, res) => {
-  const result = await models.Pengedokan.findAll({ order: [['createdAt', 'DESC']] });
+  const result = await models.Pengedokan.findAll({ where: { id_kapal: req.params.idKapal }, order: [['createdAt', 'DESC']] });
   res.json(result);
 };
 
