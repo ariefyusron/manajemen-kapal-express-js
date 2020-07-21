@@ -37,6 +37,9 @@ module.exports = {
     material_bantu: {
       type: Sequelize.INTEGER
     },
+    overhead: {
+      type: Sequelize.INTEGER
+    },
     total: {
       type: Sequelize.INTEGER
     },

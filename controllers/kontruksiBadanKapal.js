@@ -2,7 +2,7 @@ const models = require('../db/models');
 
 exports.createKontruksiBadanKapal = async (req, res) => {
   // eslint-disable-next-line radix
-  const total = parseInt(req.body.dps) + parseInt(req.body.sub_kont) + parseInt(req.body.jasa_peralatan) + parseInt(req.body.material) + parseInt(req.body.material_bantu);
+  const total = parseInt(req.body.dps) + parseInt(req.body.sub_kont) + parseInt(req.body.jasa_peralatan) + parseInt(req.body.material) + parseInt(req.body.material_bantu) + parseInt(req.body.overhead);
 
   const result = await models.KontruksiBadanKapal.create({ ...req.body, id_kapal: req.params.idKapal, total });
   res.json(result);
@@ -10,7 +10,7 @@ exports.createKontruksiBadanKapal = async (req, res) => {
 
 exports.updateKontruksiBadanKapal = async (req, res) => {
   // eslint-disable-next-line radix
-  const total = parseInt(req.body.dps) + parseInt(req.body.sub_kont) + parseInt(req.body.jasa_peralatan) + parseInt(req.body.material) + parseInt(req.body.material_bantu);
+  const total = parseInt(req.body.dps) + parseInt(req.body.sub_kont) + parseInt(req.body.jasa_peralatan) + parseInt(req.body.material) + parseInt(req.body.material_bantu) + parseInt(req.body.overhead);
   const result = await models.KontruksiBadanKapal.update({ ...req.body, total }, { where: { id: req.params.id } });
   if (result[0]) {
     res.json({ id: req.params.id, ...req.body, total });

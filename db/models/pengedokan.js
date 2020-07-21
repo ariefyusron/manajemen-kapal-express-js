@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     jasa_peralatan: DataTypes.INTEGER,
     material: DataTypes.INTEGER,
     material_bantu: DataTypes.INTEGER,
+    overhead: DataTypes.INTEGER,
     total: DataTypes.INTEGER
   }, {});
   Pengedokan.associate = (models) => {
