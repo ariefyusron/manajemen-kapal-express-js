@@ -6,6 +6,13 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    id_pekerjaan: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'PekerjaanStandarTarifs',
+        key: 'id'
+      }
+    },
     item_pekerjaan: {
       type: Sequelize.STRING
     },

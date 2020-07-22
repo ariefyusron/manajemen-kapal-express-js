@@ -10,4 +10,9 @@ router.patch('/:id', [middleware.checkAuth, middleware.checkAdmin], controller.u
 router.delete('/:id', [middleware.checkAuth, middleware.checkAdmin], controller.deleteStandarTarif);
 router.get('/', middleware.checkAuth, controller.getStandarTarif);
 
+router.post('/pekerjaan', [middleware.checkAuth, middleware.checkAdmin], controller.createPekerjaan);
+router.patch('/pekerjaan/:id', [middleware.checkAuth, middleware.checkAdmin], controller.updatePekerjaan);
+router.delete('/pekerjaan/:id', [middleware.checkAuth, middleware.checkAdmin], controller.deletePekerjaan);
+router.get('/pekerjaan', middleware.checkAuth, controller.getPekerjaan);
+
 module.exports = router;

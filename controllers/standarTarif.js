@@ -12,7 +12,7 @@ exports.createStandarTarif = async (req, res) => {
   const standarTarif = req.body.standar_tarif === '' ? 0 : parseInt(req.body.standar_tarif, 10);
 
   const result = await models.StandarTarif.create({
-    item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
+    id_pekerjaan: req.body.id_pekerjaan, item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
   });
   res.json(result);
 };
@@ -29,11 +29,11 @@ exports.updateStandarTarif = async (req, res) => {
   const standarTarif = req.body.standar_tarif === '' ? 0 : parseInt(req.body.standar_tarif, 10);
 
   const result = await models.StandarTarif.update({
-    item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
+    id_pekerjaan: req.body.id_pekerjaan, item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
   }, { where: { id: req.params.id } });
   if (result[0]) {
     res.json({
-      id: req.params.id, item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
+      id: req.params.id, id_pekerjaan: req.body.id_pekerjaan, item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
     });
   }
   else {
@@ -57,5 +57,47 @@ exports.deleteStandarTarif = async (req, res) => {
 
 exports.getStandarTarif = async (req, res) => {
   const result = await models.StandarTarif.findAll({ order: [['createdAt', 'DESC']] });
+  res.json(result);
+};
+
+// type pekerjaan
+exports.createPekerjaan = async (req, res) => {
+  const result = await models.PekerjaanStandarTarif.create(req.body);
+  res.json(result);
+};
+
+exports.deletePekerjaan = async (req, res) => {
+  await models.StandarTarif.destroy({
+    where: {
+      id_pekerjaan: req.params.id
+    }
+  });
+  const result = await models.PekerjaanStandarTarif.destroy({
+    where: {
+      id: req.params.id
+    }
+  });
+  if (result) {
+    res.json({ message: 'Deleted' });
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
+};
+
+exports.updatePekerjaan = async (req, res) => {
+  const result = await models.PekerjaanStandarTarif.update(req.body, { where: { id: req.params.id } });
+  if (result[0]) {
+    res.json({
+      id: req.params.id, ...req.body
+    });
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
+};
+
+exports.getPekerjaan = async (req, res) => {
+  const result = await models.PekerjaanStandarTarif.findAll();
   res.json(result);
 };
