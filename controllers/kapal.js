@@ -2,6 +2,9 @@ const models = require('../db/models');
 
 exports.createKapal = async (req, res) => {
   const result = await models.Kapal.create(req.body);
+  await models.PersetujuanRab.create({
+    id_kapal: result.id, dok: 0, floating: 0, pertama: '', kedua: '', ketiga: '', keempat: ''
+  });
   res.json(result);
 };
 
