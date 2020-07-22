@@ -1,17 +1,17 @@
 const models = require('../db/models');
 
-exports.createPengedokan = async (req, res) => {
+exports.createRab = async (req, res) => {
   // eslint-disable-next-line radix
   const total = parseInt(req.body.dps) + parseInt(req.body.sub_kont) + parseInt(req.body.jasa_peralatan) + parseInt(req.body.material) + parseInt(req.body.material_bantu) + parseInt(req.body.overhead);
 
-  const result = await models.Pengedokan.create({ ...req.body, id_kapal: req.params.idKapal, total });
+  const result = await models.Rab.create({ ...req.body, id_kapal: req.params.idKapal, total });
   res.json(result);
 };
 
-exports.updatePengedokan = async (req, res) => {
+exports.updateRab = async (req, res) => {
   // eslint-disable-next-line radix
   const total = parseInt(req.body.dps) + parseInt(req.body.sub_kont) + parseInt(req.body.jasa_peralatan) + parseInt(req.body.material) + parseInt(req.body.material_bantu) + parseInt(req.body.overhead);
-  const result = await models.Pengedokan.update({ ...req.body, total }, { where: { id: req.params.id } });
+  const result = await models.Rab.update({ ...req.body, total }, { where: { id: req.params.id } });
   if (result[0]) {
     res.json({ id: req.params.id, ...req.body, total });
   }
@@ -20,8 +20,8 @@ exports.updatePengedokan = async (req, res) => {
   }
 };
 
-exports.deletePengedokan = async (req, res) => {
-  const result = await models.Pengedokan.destroy({
+exports.deleteRab = async (req, res) => {
+  const result = await models.Rab.destroy({
     where: {
       id: req.params.id
     }
@@ -34,13 +34,13 @@ exports.deletePengedokan = async (req, res) => {
   }
 };
 
-exports.getPengedokan = async (req, res) => {
-  const result = await models.Pengedokan.findAll({ where: { id_kapal: req.params.idKapal }, order: [['createdAt', 'DESC']] });
+exports.getRab = async (req, res) => {
+  const result = await models.Rab.findAll({ where: { id_kapal: req.params.idKapal }, order: [['createdAt', 'DESC']] });
   res.json(result);
 };
 
-exports.getByIdPengedokan = async (req, res) => {
-  const result = await models.Pengedokan.findOne({ where: { id: req.params.id } });
+exports.getByIdRab = async (req, res) => {
+  const result = await models.Rab.findOne({ where: { id: req.params.id } });
   if (result) {
     res.json(result);
   }

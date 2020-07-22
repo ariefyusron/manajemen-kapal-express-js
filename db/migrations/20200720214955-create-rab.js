@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Pengedokans', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Rabs', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -10,6 +10,13 @@ module.exports = {
       type: Sequelize.INTEGER,
       references: {
         model: 'Kapals',
+        key: 'id'
+      }
+    },
+    id_pekerjaan: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'PekerjaanRabs',
         key: 'id'
       }
     },
@@ -52,5 +59,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: (queryInterface) => queryInterface.dropTable('Pengedokans')
+  down: (queryInterface) => queryInterface.dropTable('Rabs')
 };

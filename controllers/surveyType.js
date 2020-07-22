@@ -17,19 +17,13 @@ exports.updateType = (req, res) => {
 exports.deleteType = async (req, res) => {
   const getKapal = await models.Kapal.findAll({ where: { is_delete: 0 }, order: [['createdAt', 'DESC']] });
   getKapal.map(async (e) => {
-    await models.Pengedokan.destroy({
+    await models.PekerjaanRab.destroy({
       where: {
         id_kapal: e.id
       }
     });
 
-    await models.PelayananUmum.destroy({
-      where: {
-        id_kapal: e.id
-      }
-    });
-
-    await models.KontruksiBadanKapal.destroy({
+    await models.Rab.destroy({
       where: {
         id_kapal: e.id
       }
