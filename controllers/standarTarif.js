@@ -12,7 +12,7 @@ exports.createStandarTarif = async (req, res) => {
   const standarTarif = req.body.standar_tarif === '' ? 0 : parseInt(req.body.standar_tarif, 10);
 
   const result = await models.StandarTarif.create({
-    jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
+    item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
   });
   res.json(result);
 };
@@ -29,11 +29,11 @@ exports.updateStandarTarif = async (req, res) => {
   const standarTarif = req.body.standar_tarif === '' ? 0 : parseInt(req.body.standar_tarif, 10);
 
   const result = await models.StandarTarif.update({
-    jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
+    item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
   }, { where: { id: req.params.id } });
   if (result[0]) {
     res.json({
-      id: req.params.id, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
+      id: req.params.id, item_pekerjaan: req.body.item_pekerjaan, jam_orang: jamOrang, dps, sub_kont: subKont, peralatan, material, material_bantu: materialBantu, overhead, total_hpp: totalHpp, standar_tarif: standarTarif
     });
   }
   else {

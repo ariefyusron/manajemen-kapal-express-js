@@ -6,6 +6,9 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    item_pekerjaan: {
+      type: Sequelize.STRING
+    },
     jam_orang: {
       type: Sequelize.INTEGER
     },

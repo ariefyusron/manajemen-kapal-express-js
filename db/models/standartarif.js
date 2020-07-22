@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const StandarTarif = sequelize.define('StandarTarif', {
+    item_pekerjaan: DataTypes.STRING,
     jam_orang: DataTypes.INTEGER,
     dps: DataTypes.INTEGER,
     sub_kont: DataTypes.INTEGER,
