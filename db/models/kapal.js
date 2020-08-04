@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     draft: DataTypes.INTEGER,
     gross_tonnage: DataTypes.INTEGER,
     class: DataTypes.STRING,
-    tahuns: DataTypes.STRING,
+    tahun: DataTypes.STRING,
     survey_type: DataTypes.INTEGER,
     is_delete: DataTypes.BOOLEAN
   }, {});
