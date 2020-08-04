@@ -37,6 +37,9 @@ module.exports = {
     class: {
       type: Sequelize.STRING
     },
+    tahun: {
+      type: Sequelize.STRING
+    },
     survey_type: {
       type: Sequelize.INTEGER,
       references: {
