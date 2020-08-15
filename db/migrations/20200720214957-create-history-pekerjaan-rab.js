@@ -6,6 +6,13 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER
     },
+    id_history: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'Histories',
+        key: 'id'
+      }
+    },
     id_kapal: {
       type: Sequelize.INTEGER,
       references: {

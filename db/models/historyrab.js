@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const HistoryRab = sequelize.define('HistoryRab', {
+    id_history: DataTypes.INTEGER,
     id_kapal: DataTypes.INTEGER,
     id_history_pekerjaan: DataTypes.INTEGER,
     nama_pekerjaan: DataTypes.STRING,
@@ -21,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
 
     HistoryRab.belongsTo(models.Kapal, {
       foreignKey: 'id_kapal'
+    });
+
+    HistoryRab.belongsTo(models.History, {
+      foreignKey: 'id_history'
     });
   };
   return HistoryRab;
