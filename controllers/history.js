@@ -62,3 +62,15 @@ exports.getHistory = async (req, res) => {
   const result = await models.History.findAll({ where: { id_kapal: req.params.idKapal }, order: [['createdAt', 'DESC']] });
   res.json(result);
 };
+
+exports.isEdit = async (req, res) => {
+  const result = await models.PekerjaanRab.update({ is_save: false }, { where: { id_kapal: req.params.idKapal } });
+  if (result[0]) {
+    res.json({
+      message: 'sukses'
+    });
+  }
+  else {
+    res.status(404).json({ message: 'Not found' });
+  }
+};
