@@ -27,11 +27,11 @@ exports.saveRab = async (req, res) => {
   const history = await models.History.create({ total: totalEstimasi, id_kapal: req.params.idKapal });
 
   pekerjaan.map(async (item) => {
-    const data = { ...item, id_history: history.get({ plain: true }).id };
+    const data = { ...item, id_history: history.get({ plain: true }).id, id_pekerjaan: item.id };
+    delete data.id;
     delete data.is_save;
     delete data.createdAt;
     delete data.updatedAt;
-
     await models.HistoryPekerjaanRab.create(data);
     return true;
   });
@@ -73,4 +73,14 @@ exports.isEdit = async (req, res) => {
   else {
     res.status(404).json({ message: 'Not found' });
   }
+};
+
+exports.getPekerjaan = async (req, res) => {
+  const result = await models.HistoryPekerjaanRab.findAll({ where: { id_history: req.params.idHistory } });
+  res.json(result);
+};
+
+exports.getRab = async (req, res) => {
+  const result = await models.HistoryRab.findAll({ where: { id_history: req.params.idHistory }, order: [['createdAt', 'DESC']] });
+  res.json(result);
 };

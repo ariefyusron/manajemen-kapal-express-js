@@ -20,6 +20,9 @@ module.exports = {
         key: 'id'
       }
     },
+    id_pekerjaan: {
+      type: Sequelize.INTEGER
+    },
     name: {
       type: Sequelize.STRING
     },
