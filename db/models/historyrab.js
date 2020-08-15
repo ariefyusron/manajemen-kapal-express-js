@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
-  const Rab = sequelize.define('Rab', {
+  const HistoryRab = sequelize.define('HistoryRab', {
     id_kapal: DataTypes.INTEGER,
-    id_pekerjaan: DataTypes.INTEGER,
+    id_history_pekerjaan: DataTypes.INTEGER,
     nama_pekerjaan: DataTypes.STRING,
     volume: DataTypes.INTEGER,
     satuan: DataTypes.STRING,
@@ -13,15 +13,15 @@ module.exports = (sequelize, DataTypes) => {
     overhead: DataTypes.INTEGER,
     total: DataTypes.INTEGER
   }, {});
-  Rab.associate = (models) => {
+  HistoryRab.associate = (models) => {
     // associations can be defined here
-    Rab.belongsTo(models.PekerjaanRab, {
-      foreignKey: 'id_pekerjaan'
+    HistoryRab.belongsTo(models.HistoryPekerjaanRab, {
+      foreignKey: 'id_history_pekerjaan'
     });
 
-    Rab.belongsTo(models.Kapal, {
+    HistoryRab.belongsTo(models.Kapal, {
       foreignKey: 'id_kapal'
     });
   };
-  return Rab;
+  return HistoryRab;
 };

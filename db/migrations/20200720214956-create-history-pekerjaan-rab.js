@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('PekerjaanRabs', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('HistoryPekerjaanRabs', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -16,10 +16,6 @@ module.exports = {
     name: {
       type: Sequelize.STRING
     },
-    is_save: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false
-    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE
@@ -29,5 +25,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: (queryInterface) => queryInterface.dropTable('PekerjaanRabs')
+  down: (queryInterface) => queryInterface.dropTable('HistoryPekerjaanRabs')
 };
